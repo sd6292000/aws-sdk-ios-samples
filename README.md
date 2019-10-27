@@ -1,34 +1,35 @@
-# The AWS SDK for iOS Samples
+Best Practise:
+1. Use API in SLF4j instead of the one in Log4j, Logback.
+Separate the 
+2. Use stackholder instead of appending the string for trace/debug/info.
+3. The exception information should include both details on exception & stacktrace.
 
-This repository has samples that demonstrate various aspects of the [AWS SDK for iOS](https://github.com/aws-amplify/aws-sdk-ios).
+Exception:
+1. make sure the log existed when exception caught. 
+2. The key attributes in logging should include:
+	 who did the call
+	 what the Context is
+	 what action has been performed
+	 what attributes can do help on trouble-shooting.
+3. Data to exclude:
+	Source code
+	User Credentials(password, TEA token)
+	Connection details
 
-### Resources
+Logging Location:
+	Network: access log
 
-* [Developer Guide for AWS SDK for iOS](https://aws-amplify.github.io/docs/ios/start)
+	Process:
+	Input Validation failures e.g. illegal Query String or URI 
+	Excessive use
+	Authentication success& failures
+	Authorization failures
+	Session Management failures
+	Backend Micro-Service failures
+	Request details(uri, headers)
+	Response details(status code, headers)
 
-Please refer to **README.md** in each sample directory for more specific instructions.
+	System Call:
+	Schedule Job start-ups & shut-downs
+	Data changes on Routing & ContentProviders.
 
-### List of Samples
-
-* CognitoYourUserPools-Sample ([Swift](https://github.com/awslabs/aws-sdk-ios-samples/tree/master/CognitoYourUserPools-Sample/Swift), [Objective-C](https://github.com/awslabs/aws-sdk-ios-samples/tree/master/CognitoYourUserPools-Sample/Objective-C/)). This is a sample mobile application that demonstrates how to sign up and sign in a user to display an authenticated portion of your app. Involved AWS Services are:
-  + Amazon Cognito Identity Provider (Your User Pools)
-
-* S3TransferUtility-Sample ([Swift](https://github.com/awslabs/aws-sdk-ios-samples/tree/master/S3TransferUtility-Sample/Swift/), [Objective-C](https://github.com/awslabs/aws-sdk-ios-samples/tree/master/S3TransferUtility-Sample/Objective-C/)). This is a sample mobile application that demonstrates how to use the Amazon S3 PreSigned URL Builder to download / upload files in background. Involved AWS Services are:
-  + Amazon S3
-  + Amazon Cognito Identity
-
-* IoT-Sample ([Swift](https://github.com/awslabs/aws-sdk-ios-samples/tree/master/IoT-Sample/Swift/)). This is a sample mobile application that demonstrates how to publish and subscribe to data using AWS IoT. Involved AWS Services are:
-  + Amazon AWS IoT
-  + Amazon Cognito Identity
-
-* Lex-Sample ([Objective-C](https://github.com/awslabs/aws-sdk-ios-samples/tree/master/Lex-Sample/ObjC/), [Swift](https://github.com/awslabs/aws-sdk-ios-samples/tree/master/Lex-Sample/swift-3/)). This is a sample mobile application that demonstrates how to use text to text chat and voice to voice chat using Amazon Lex. Involved AWS Services are:
-  + Amazon Lex
-  + Amazon Cognito Identity
-
-* Polly-Sample ([Swift](https://github.com/awslabs/aws-sdk-ios-samples/tree/master/Polly-Sample/Swift/)). This is a sample mobile application that demonstrates how to get the list of voices and synthesize speech using Amazon Polly. Involved AWS Services are:
-  + Amazon Polly
-  + Amazon Cognito Identity
-
-### Getting Help
-
-We use [AWS iOS SDK GitHub issues](https://github.com/aws-amplify/aws-sdk-ios/issues) for tracking questions, bugs, and feature requests.
